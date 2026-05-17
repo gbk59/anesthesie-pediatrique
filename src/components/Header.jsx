@@ -2,6 +2,7 @@ import "../styles/header.css";
 import PatientBanner from "./PatientBanner";
 import { useEffect, useState } from "react";
 import BoutonOnglet from "./BoutonOnglet";
+import { Link } from "react-router-dom";
 
 
 export default function Header({
@@ -41,6 +42,11 @@ export default function Header({
 
         <div className="header-auth">
           {userEmail && <span className="header-email">{userEmail}</span>}
+
+          <Link to="/admin" className="header-admin-link">
+            Admin
+          </Link>
+
           <button type="button" onClick={onSignOut} className="header-signout">
             Déconnexion
           </button>

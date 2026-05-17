@@ -23,7 +23,8 @@
 
 .carte-resultat-titre {
   text-align: center;
-  font-size: 21px;
+  text-transform: uppercase;
+  font-size: 22px;
   font-weight: 800;
   margin: 0 0 10px;
   letter-spacing: -0.02em;
@@ -31,7 +32,8 @@
 
 .carte-resultat-description {
   text-align: center;
-  font-size: 16px;
+  font-size: 15px;
+  opacity: 0.78;
   line-height: 1.45;
   margin: 0 0 12px;
 }
@@ -39,6 +41,7 @@
 .carte-resultat-valeur {
   text-align: center;
   font-size: 25px;
+  line-height: 1.15;
   font-weight: 800;
   margin: 0;
   letter-spacing: -0.02em;
@@ -71,5 +74,20 @@
   .carte-resultat {
     animation: none;
     transition: none;
+    overflow: hidden;
+    position: relative;
   }
+}
+
+.carte-resultat::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.18),
+      transparent 45%
+    );
+  pointer-events: none;
 }

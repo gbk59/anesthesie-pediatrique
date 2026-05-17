@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
+import { Link } from "react-router-dom";
 
 const cardStyle = {
   border: "1px solid #e5e7eb",
@@ -105,7 +106,42 @@ export default function AdminDashboard() {
         minHeight: "100vh",
       }}
     >
-      <h1 style={{ marginBottom: 4 }}>Dashboard admin</h1>
+    <div
+    style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 10,
+        background: "#f8fafc",
+        paddingTop: 12,
+        paddingBottom: 16,
+        marginBottom: 20,
+        borderBottom: "1px solid #e5e7eb",
+    }}
+    >
+    <h1 style={{ margin: 0 }}>
+        Dashboard admin
+    </h1>
+
+    <p style={{ color: "#64748b", marginTop: 6, marginBottom: 14 }}>
+        Vue synthétique de l’utilisation de l’application.
+    </p>
+
+    <Link
+        to="/"
+        style={{
+        display: "inline-block",
+        textDecoration: "none",
+        background: "#2563eb",
+        color: "white",
+        padding: "8px 12px",
+        borderRadius: 12,
+        fontWeight: 700,
+        fontSize: 14,
+        }}
+    >
+        ← Retour à l’application
+    </Link>
+    </div>
 
       <p style={{ color: "#64748b", marginTop: 0, marginBottom: 20 }}>
         Vue synthétique de l’utilisation de l’application.
