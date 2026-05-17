@@ -32,6 +32,7 @@ import { trackEvent } from "./utils/trackEvent";
 import Mentions from "./pages/Mentions";
 import { Routes, Route } from "react-router-dom";
 import AuthGate from "./auth/AuthGate";
+import CGUModal from "./components/CGUModal";
 
 function App() {
   const { user, signOut } = useAuth();
@@ -42,6 +43,7 @@ function App() {
   const [pdfOuvert, setPdfOuvert] = useState(null);
   const [sousOngletSSPI, setSousOngletSSPI] = useState("analgesie");
   const [recherche, setRecherche] = useState("");
+  const [showCGU, setShowCGU] = useState(false);
 
   const [flaccVisage, setFlaccVisage] = useState(0);
   const [flaccJambes, setFlaccJambes] = useState(0);
@@ -276,8 +278,29 @@ return (
           ni les protocoles locaux en vigueur. L’utilisateur demeure responsable de la vérification 
           des données et des décisions thérapeutiques.
         </div>
+        <div style={{ marginTop: 10 }}>
+          <button
+            type="button"
+            onClick={() => setShowCGU(true)}
+            style={{
+              border: "none",
+              background: "none",
+              color: "#2563eb",
+              textDecoration: "underline",
+              fontWeight: 700,
+              cursor: "pointer",
+              fontSize: 12,
+            }}
+          >
+            Mentions & conditions d’utilisation
+          </button>
+        </div>        
         </div>
       )}  
+    <CGUModal
+      open={showCGU}
+      onClose={() => setShowCGU(false)}
+    />      
     </AuthGate>
         }
       />
