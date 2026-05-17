@@ -1,0 +1,77 @@
+.champ-nombre-slider {
+  width: 100%;
+
+  margin-top: 4px;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  height: 6px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #60a5fa 0%,
+      #2563eb 100%
+    );
+
+  outline: none;
+}
+
+/* TRACK IOS */
+
+.champ-nombre-slider::-webkit-slider-runnable-track {
+  height: 6px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #93c5fd 0%,
+      #2563eb 100%
+    );
+}
+
+/* THUMB IOS */
+
+.champ-nombre-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+
+  margin-top: -7px;
+
+  width: 20px;
+  height: 20px;
+
+  border-radius: 50%;
+
+  background: #2563eb;
+
+  border: 3px solid white;
+
+  box-shadow:
+    0 4px 10px rgba(37, 99, 235, 0.25);
+
+  cursor: pointer;
+}
+
+/* FIREFOX */
+
+.champ-nombre-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #2563eb;
+
+  box-shadow:
+    0 4px 10px rgba(37, 99, 235, 0.25);
+
+  cursor: pointer;
+}

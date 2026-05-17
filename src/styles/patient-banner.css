@@ -1,0 +1,122 @@
+.patient-banner {
+  margin-top: 8px;
+  margin-bottom: 0;
+
+  padding: 8px 10px;
+
+  border-radius: 16px;
+
+  background: rgba(239, 246, 255, 0.94);
+
+  border: 1px solid rgba(147, 197, 253, 0.75);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 6px 16px rgba(37, 99, 235, 0.07),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+}
+
+.patient-banner-infos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  min-width: 0;
+}
+
+.patient-banner-label {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  color: #1e3a8a;
+  opacity: 0.75;
+}
+
+.patient-banner-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  flex-wrap: nowrap;
+}
+
+.patient-banner-badge {
+  padding: 5px 8px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.82);
+
+  color: #1e40af;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  white-space: nowrap;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(37, 99, 235, 0.08);
+}
+
+.patient-banner-button {
+  flex: 0 0 auto;
+
+  border: none;
+
+  border-radius: 13px;
+
+  padding: 8px 11px;
+
+  background: #2563eb;
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 14px rgba(37, 99, 235, 0.2);
+
+  transition:
+    transform 120ms ease,
+    box-shadow 160ms ease,
+    opacity 160ms ease;
+}
+
+.patient-banner-button:active {
+  transform: scale(0.96);
+}
+
+.patient-banner-button:hover {
+  opacity: 0.94;
+}
+
+.header-container.compact .patient-banner {
+  margin-top: 6px;
+  padding: 6px 9px;
+  border-radius: 15px;
+}
+
+.header-container.compact .patient-banner-label {
+  font-size: 11px;
+}
+
+.header-container.compact .patient-banner-badge {
+  padding: 4px 7px;
+  font-size: 12px;
+}
+
+.header-container.compact .patient-banner-button {
+  padding: 7px 10px;
+  font-size: 13px;
+}

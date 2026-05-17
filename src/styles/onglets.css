@@ -1,0 +1,70 @@
+.bouton-onglet {
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.25;
+  border: none;
+  border-radius: 18px;
+  background: rgba(229, 231, 235, 0.85);
+  color: #111827;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+  scroll-snap-align: start;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  box-sizing: border-box;
+
+  transition:
+    transform 120ms ease,
+    background 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.bouton-onglet.actif {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.28);
+}
+
+.bouton-onglet:active {
+  transform: scale(0.97);
+}
+
+.onglet-emoji {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  line-height: 1;
+  transform: translateY(1px);
+}
+
+.onglet-label {
+  line-height: 1;
+}
+
+.onglets-grid {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  padding-bottom: 4px;
+
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none;
+}
+
+.onglets-grid::-webkit-scrollbar {
+  display: none;
+}
