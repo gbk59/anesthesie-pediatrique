@@ -162,9 +162,25 @@
 
 @media (max-width: 560px) {
   .header-topline {
-    align-items: flex-start;
     flex-direction: column;
+    align-items: center;
+    gap: 8px;
   }
+
+  .header-auth {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .header-email {
+    max-width: 160px;
+    font-size: 11px;
+  }
+
+  .header-titre {
+    text-align: center;
+  }
+}
 
   .header-auth {
     width: 100%;
@@ -174,4 +190,4 @@
   .header-email {
     max-width: 210px;
   }
-}
+

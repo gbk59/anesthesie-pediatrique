@@ -22,6 +22,29 @@ function AuthScreen() {
     !submitting &&
     (!isSignup || acceptCGU);
 
+  async function handleForgotPassword() {
+    if (!email.trim()) {
+      setErrorMessage("Entre ton email d’abord.")
+      return
+    }
+
+    setErrorMessage("")
+    setMessage("")
+
+    const { error } = await supabase.auth.resetPasswordForEmail(
+      email.trim(),
+      {
+        redirectTo: `${window.location.origin}/reset-password`,
+      }
+    )
+
+    if (error) {
+      setErrorMessage(error.message)
+    } else {
+      setMessage("Email de récupération envoyé.")
+    }
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
     setMessage("");
@@ -159,7 +182,22 @@ function AuthScreen() {
           {errorMessage && <p className="auth-error">{errorMessage}</p>}
 
           {message && <p className="auth-message">{message}</p>}
-
+          {!isSignup && (
+            <button
+              type="button"
+              onClick={handleForgotPassword}
+              style={{
+                background: "none",
+                border: "none",
+                color: "#555",
+                textDecoration: "underline",
+                marginBottom: 12,
+                cursor: "pointer",
+              }}
+            >
+              Mot de passe oublié ?
+            </button>
+          )}
           <button
             type="submit"
             disabled={!canSubmit}

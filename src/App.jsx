@@ -33,6 +33,8 @@ import Mentions from "./pages/Mentions";
 import { Routes, Route } from "react-router-dom";
 import AuthGate from "./auth/AuthGate";
 import CGUModal from "./components/CGUModal";
+import AdminDashboard from './pages/AdminDashboard'
+import ResetPassword from './pages/ResetPassword'
 
 function App() {
   const { user, signOut } = useAuth();
@@ -82,6 +84,8 @@ function App() {
 
 return (
 <Routes>
+  <Route path="/admin" element={<AdminDashboard />} /> 
+  <Route path="/reset-password" element={<ResetPassword />} />
   <Route
     path="/"
     element={
