@@ -1,4 +1,6 @@
 import CarteResultat from "./CarteResultat";
+import FavoriButton from "./FavoriButton";
+import { normaliserTexte } from "../utils/helpers";
 
 export default function VentilationSection({
   ventilationData,
@@ -8,14 +10,14 @@ export default function VentilationSection({
   valeurManquante,
   couleursOnglets,
   formatNombre,
+  estFavori,
+  basculerFavori,
 }) {
   return (
     <>
       {ventilationData
         .filter((item) =>
-          item.nom
-            .toLowerCase()
-            .includes(recherche.toLowerCase())
+          normaliserTexte(item.nom).includes(normaliserTexte(recherche))
         )
         .map((item) => (
           <CarteResultat
@@ -32,6 +34,18 @@ export default function VentilationSection({
             }
             fond={couleursOnglets.ventilation.fond}
             bordure={couleursOnglets.ventilation.bordure}
+            action={
+              <FavoriButton
+                actif={estFavori?.("ventilation", item.nom)}
+                onClick={() =>
+                  basculerFavori?.({
+                    type: "ventilation",
+                    key: item.nom,
+                    label: item.nom,
+                  })
+                }
+              />
+            }
           />
         ))}
     </>

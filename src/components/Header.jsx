@@ -128,6 +128,13 @@ export default function Header({
         />
 
         <BoutonOnglet
+          actif={onglet === "favoris"}
+          onClick={() => changerOnglet("favoris")}
+          emoji="⭐"
+          label="Favoris"
+        />
+
+        <BoutonOnglet
           actif={onglet === "sources"}
           onClick={() => changerOnglet("sources")}
           emoji="📄"

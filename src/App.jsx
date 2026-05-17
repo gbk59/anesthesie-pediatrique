@@ -23,12 +23,14 @@ import RespirateurSection from "./components/RespirateurSection";
 import ConstantesSection from "./components/ConstantesSection";
 import AidesSection from "./components/AidesSection";
 import SourcesSection from "./components/SourcesSection";
+import FavorisSection from "./components/FavorisSection";
 import PatientSetup from "./components/PatientSetup";
 import PatientBanner from "./components/PatientBanner";
 import { valeurManquante, formatNombre } from "./utils/helpers";
 import "./styles/transitions.css";
 import { Analytics } from '@vercel/analytics/react'
 import { trackEvent } from "./utils/trackEvent";
+import { useFavoris } from "./hooks/useFavoris";
 import Mentions from "./pages/Mentions";
 import { Routes, Route } from "react-router-dom";
 import AuthGate from "./auth/AuthGate";
@@ -46,6 +48,15 @@ function App() {
   const [sousOngletSSPI, setSousOngletSSPI] = useState("analgesie");
   const [recherche, setRecherche] = useState("");
   const [showCGU, setShowCGU] = useState(false);
+
+  const {
+    favoris,
+    chargementFavoris,
+    erreurFavoris,
+    estFavori,
+    basculerFavori,
+    mettreAJourOrdre,
+  } = useFavoris(user);
 
   const [flaccVisage, setFlaccVisage] = useState(0);
   const [flaccJambes, setFlaccJambes] = useState(0);
@@ -168,6 +179,8 @@ return (
             valeurManquante={valeurManquante}
             formatNombre={formatNombre}
             categories={categories}
+            estFavori={estFavori}
+            basculerFavori={basculerFavori}
           />
         )}
 
@@ -178,6 +191,8 @@ return (
             valeurManquante={valeurManquante}
             formatNombre={formatNombre}
             couleursOnglets={couleursOnglets}
+            estFavori={estFavori}
+            basculerFavori={basculerFavori}
           />
         )}
 
@@ -190,6 +205,8 @@ return (
             valeurManquante={valeurManquante}
             couleursOnglets={couleursOnglets}
             formatNombre={formatNombre}
+            estFavori={estFavori}
+            basculerFavori={basculerFavori}
           />
         )}
 
@@ -202,6 +219,8 @@ return (
             valeurManquante={valeurManquante}
             couleursOnglets={couleursOnglets}
             formatNombre={formatNombre}
+            estFavori={estFavori}
+            basculerFavori={basculerFavori}
           />
         )}
 
@@ -221,6 +240,32 @@ return (
             aidesCognitives={aidesCognitives}
             recherche={recherche}
             setPdfOuvert={setPdfOuvert}
+            estFavori={estFavori}
+            basculerFavori={basculerFavori}
+          />
+        )}
+
+        {onglet === "favoris" && (
+          <FavorisSection
+            favoris={favoris}
+            chargementFavoris={chargementFavoris}
+            erreurFavoris={erreurFavoris}
+            recherche={recherche}
+            medicaments={medicaments}
+            aidesCognitives={aidesCognitives}
+            ventilationData={ventilationData}
+            respirateurData={respirateurData}
+            analgesieSSPI={analgesieSSPI}
+            nvpoSSPI={nvpoSSPI}
+            couleursOnglets={couleursOnglets}
+            categories={categories}
+            poids={poids}
+            age={age}
+            valeurManquante={valeurManquante}
+            formatNombre={formatNombre}
+            setPdfOuvert={setPdfOuvert}
+            basculerFavori={basculerFavori}
+            mettreAJourOrdre={mettreAJourOrdre}
           />
         )}
 
@@ -252,6 +297,8 @@ return (
             poids={poids}
             valeurManquante={valeurManquante}
             formatNombre={formatNombre}
+            estFavori={estFavori}
+            basculerFavori={basculerFavori}
           />
         )}
     

@@ -1,4 +1,5 @@
 import CarteResultat from "./CarteResultat";
+import FavoriButton from "./FavoriButton";
 import { normaliserTexte } from "../utils/helpers";
 
 export default function DroguesSection({
@@ -8,6 +9,8 @@ export default function DroguesSection({
   valeurManquante,
   formatNombre,
   categories,
+  estFavori,
+  basculerFavori,
 }) {
   return (
     <>
@@ -52,6 +55,18 @@ export default function DroguesSection({
               fond={styleCategorie.couleur}
               texte={styleCategorie.texte}
               bordure="#212529"
+              action={
+                <FavoriButton
+                  actif={estFavori?.("drug", medicament.nom)}
+                  onClick={() =>
+                    basculerFavori?.({
+                      type: "drug",
+                      key: medicament.nom,
+                      label: medicament.nom,
+                    })
+                  }
+                />
+              }
             />
           );
         })}

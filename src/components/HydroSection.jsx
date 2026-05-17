@@ -1,4 +1,5 @@
 import CarteResultat from "./CarteResultat";
+import FavoriButton from "./FavoriButton";
 
 export default function HydroSection({
   poids,
@@ -6,6 +7,8 @@ export default function HydroSection({
   valeurManquante,
   formatNombre,
   couleursOnglets,
+  estFavori,
+  basculerFavori,
 }) {
   return (
     <>
@@ -27,6 +30,18 @@ export default function HydroSection({
         }
         fond={couleursOnglets.hydro.fond}
         bordure={couleursOnglets.hydro.bordure}
+        action={
+          <FavoriButton
+            actif={estFavori?.("hydro", "apports-base")}
+            onClick={() =>
+              basculerFavori?.({
+                type: "hydro",
+                key: "apports-base",
+                label: "Apports de base",
+              })
+            }
+          />
+        }
       />
 
       <CarteResultat
@@ -45,6 +60,18 @@ export default function HydroSection({
         }
         fond={couleursOnglets.hydro.fond}
         bordure={couleursOnglets.hydro.bordure}
+        action={
+          <FavoriButton
+            actif={estFavori?.("hydro", "compensation-jeune")}
+            onClick={() =>
+              basculerFavori?.({
+                type: "hydro",
+                key: "compensation-jeune",
+                label: "Compensation du jeûne",
+              })
+            }
+          />
+        }
       />
     </>
   );

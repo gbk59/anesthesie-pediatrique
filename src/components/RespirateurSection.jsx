@@ -1,4 +1,6 @@
 import CarteResultat from "./CarteResultat";
+import FavoriButton from "./FavoriButton";
+import { normaliserTexte } from "../utils/helpers";
 
 export default function RespirateurSection({
   respirateurData,
@@ -8,14 +10,14 @@ export default function RespirateurSection({
   valeurManquante,
   couleursOnglets,
   formatNombre,
+  estFavori,
+  basculerFavori,
 }) {
   return (
     <>
       {respirateurData
         .filter((item) =>
-          item.nom
-            .toLowerCase()
-            .includes(recherche.toLowerCase())
+          normaliserTexte(item.nom).includes(normaliserTexte(recherche))
         )
         .map((item) => (
           <CarteResultat
@@ -33,6 +35,18 @@ export default function RespirateurSection({
             }
             fond={couleursOnglets.respirateur.fond}
             bordure={couleursOnglets.respirateur.bordure}
+            action={
+              <FavoriButton
+                actif={estFavori?.("respirateur", item.nom)}
+                onClick={() =>
+                  basculerFavori?.({
+                    type: "respirateur",
+                    key: item.nom,
+                    label: item.nom,
+                  })
+                }
+              />
+            }
           />
         ))}
     </>

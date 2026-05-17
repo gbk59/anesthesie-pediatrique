@@ -1,8 +1,10 @@
 import "../styles/carte-lien.css";
 
-function CarteLien({ titre, description, bouton, onClick }) {
+function CarteLien({ titre, description, bouton, onClick, action }) {
   return (
-    <div className="carte-lien">
+    <div className={`carte-lien ${action ? "carte-has-action" : ""}`}>
+      {action && <div className="carte-action-top-right">{action}</div>}
+
       <h2 className="carte-lien-titre">
         {titre}
       </h2>

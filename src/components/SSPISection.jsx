@@ -1,5 +1,7 @@
 import CarteResultat from "./CarteResultat";
 import FlaccItem from "./FlaccItem";
+import FavoriButton from "./FavoriButton";
+import { normaliserTexte } from "../utils/helpers";
 
 export default function SSPISection({
   sousOngletSSPI,
@@ -27,6 +29,8 @@ export default function SSPISection({
   poids,
   valeurManquante,
   formatNombre,
+  estFavori,
+  basculerFavori,
 }) {
   return (
     <>
@@ -156,9 +160,7 @@ export default function SSPISection({
         <>
           {analgesieSSPI
             .filter((medicament) =>
-              medicament.nom
-                .toLowerCase()
-                .includes(recherche.toLowerCase())
+              normaliserTexte(medicament.nom).includes(normaliserTexte(recherche))
             )
             .map((medicament) => (
               <CarteResultat
@@ -175,6 +177,18 @@ export default function SSPISection({
                 }
                 fond={medicament.couleur}
                 bordure={couleursOnglets.sspi.bordure}
+                action={
+                  <FavoriButton
+                    actif={estFavori?.("sspi-analgesie", medicament.nom)}
+                    onClick={() =>
+                      basculerFavori?.({
+                        type: "sspi-analgesie",
+                        key: medicament.nom,
+                        label: `SSPI Analgésie — ${medicament.nom}`,
+                      })
+                    }
+                  />
+                }
               />
             ))}
         </>
@@ -184,9 +198,7 @@ export default function SSPISection({
         <>
           {nvpoSSPI
             .filter((medicament) =>
-              medicament.nom
-                .toLowerCase()
-                .includes(recherche.toLowerCase())
+              normaliserTexte(medicament.nom).includes(normaliserTexte(recherche))
             )
             .map((medicament) => (
               <CarteResultat
@@ -204,6 +216,18 @@ export default function SSPISection({
                 fond={medicament.couleur}
                 info={medicament.info}
                 bordure={couleursOnglets.sspi.bordure}
+                action={
+                  <FavoriButton
+                    actif={estFavori?.("sspi-nvpo", medicament.nom)}
+                    onClick={() =>
+                      basculerFavori?.({
+                        type: "sspi-nvpo",
+                        key: medicament.nom,
+                        label: `SSPI NVPO — ${medicament.nom}`,
+                      })
+                    }
+                  />
+                }
               />
             ))}
         </>
