@@ -18,6 +18,7 @@ import CarteLien from "./CarteLien";
 import CarteResultat from "./CarteResultat";
 import FavoriButton from "./FavoriButton";
 import { normaliserTexte } from "../utils/helpers";
+import { GripVertical } from "lucide-react";
 
 const PREFIX_CATEGORIE = "categorie:";
 const PREFIX_FAVORI = "favori:";
@@ -82,21 +83,24 @@ function SortableCarte({ id, children }) {
     transition,
   };
 
-  function connecterRefs(node) {
-    setNodeRef(node);
-    setActivatorNodeRef(node);
-  }
-
   return (
     <div
-      ref={connecterRefs}
+      ref={setNodeRef}
       style={style}
       className={`favori-sortable-card ${isDragging ? "is-dragging" : ""}`}
       {...attributes}
-      {...listeners}
     >
       <div className="favori-card-content">{children}</div>
-    </div>
+
+          <button
+            ref={setActivatorNodeRef}
+            className="favori-card-drag-handle"
+            {...listeners}
+          >
+          <GripVertical size={16} strokeWidth={2.2} />
+
+          </button>
+      </div>
   );
 }
 
@@ -147,7 +151,7 @@ function HeaderCategorie({
         {...dragAttributes}
         {...dragListeners}
       >
-        ⋮⋮
+        <GripVertical size={16} strokeWidth={2.2} />
       </button>
 
       <button type="button" onClick={onToggle} className="favori-category-toggle">

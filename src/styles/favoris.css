@@ -3,16 +3,22 @@
   height: 40px;
   border: none;
   border-radius: 999px;
+
   background: rgba(255, 255, 255, 0.88);
   color: #64748b;
+
   font-size: 24px;
   line-height: 1;
   font-weight: 900;
+
   cursor: pointer;
+
   box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -201,8 +207,13 @@
   position: absolute;
   left: 10px;
   top: 10px;
-  z-index: 5;
+  z-index: 20;
   opacity: 0.72;
+}
+
+.favori-drag-handle svg {
+  width: 16px;
+  height: 16px;
 }
 
 .favori-drag-handle:active,
@@ -219,22 +230,63 @@
   }
 }
 
-/* Correctif DnD cartes : la carte entière doit pouvoir capter le geste. */
+.carte-resultat.carte-has-action {
+  padding-right: 16px !important;
+}
+
 .favori-sortable-card {
-  touch-action: none;
-  user-select: none;
+  position: relative;
 }
 
 .favori-card-content {
-  touch-action: none;
-  user-select: none;
+  position: relative;
+  z-index: 1;
 }
 
-.favori-card-content button,
-.favori-card-content a {
-  user-select: auto;
-}
-
-.carte-resultat.carte-has-action {
+.favori-sortable-card .carte-has-action {
   padding-right: 16px !important;
+}
+
+.favori-card-drag-handle {
+  position: absolute;
+  right: 24px;
+  bottom: 20px;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 18px;
+  height: 18px;
+
+  padding: 0;
+  border: none;
+  background: transparent;
+
+  color: rgba(100, 116, 139, 0.72);
+
+  cursor: grab;
+  touch-action: none;
+
+  opacity: 0.9;
+
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.favori-card-drag-handle svg {
+  width: 18px;
+  height: 18px;
+}
+
+.favori-card-drag-handle:active {
+  cursor: grabbing;
+  transform: scale(0.96);
+}
+
+
+.favori-sortable-card:hover .favori-card-drag-handle {
+  opacity: 0.9;
+  color: rgba(15, 23, 42, 0.7);
 }
