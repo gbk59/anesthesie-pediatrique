@@ -13,11 +13,18 @@ function CarteResultat({
   return (
     <div
       className={`carte-resultat ${action ? "carte-has-action" : ""}`}
-      style={{
-        background: fond,
-        color: texte,
-        borderTopColor: bordure,
-      }}
+        style={{
+          background: `
+            linear-gradient(
+              180deg,
+              rgba(255,255,255,0.10) 0%,
+              rgba(255,255,255,0.02) 100%
+            ),
+            ${fond}
+          `,
+          color: texte,
+          borderTopColor: bordure,
+        }}
     >
       {action && <div className="carte-action-top-right">{action}</div>}
 

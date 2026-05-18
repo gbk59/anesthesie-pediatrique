@@ -1,14 +1,19 @@
 .patient-banner {
+  position: relative;
+  overflow: hidden;
+
   margin-top: 8px;
   margin-bottom: 0;
+  padding: 10px 11px;
+  min-height: 54px;
+  box-sizing: border-box;
 
-  padding: 8px 10px;
+  border-radius: 18px;
 
-  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(239, 246, 255, 0.98), rgba(219, 234, 254, 0.86));
 
-  background: rgba(239, 246, 255, 0.94);
-
-  border: 1px solid rgba(147, 197, 253, 0.75);
+  border: 1px solid rgba(191, 219, 254, 0.82);
 
   display: flex;
   align-items: center;
@@ -16,107 +21,143 @@
   gap: 10px;
 
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 
   box-shadow:
-    0 6px 16px rgba(37, 99, 235, 0.07),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+    0 8px 22px rgba(37, 99, 235, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78),
+    inset 0 -1px 0 rgba(37, 99, 235, 0.06);
+}
+
+.patient-banner::after {
+  content: "";
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  bottom: -34px;
+  height: 62px;
+  opacity: 0.34;
+  background:
+    radial-gradient(75px 32px at 22% 45%, rgba(255,255,255,0.48), transparent 72%),
+    radial-gradient(125px 42px at 58% 38%, rgba(255,255,255,0.42), transparent 72%),
+    radial-gradient(105px 36px at 86% 44%, rgba(147,197,253,0.34), transparent 74%);
+  pointer-events: none;
 }
 
 .patient-banner-infos {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
-  gap: 8px;
-
+  gap: 9px;
   min-width: 0;
 }
 
-.patient-banner-label {
-  font-size: 12px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+.patient-banner-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  font-size: 26px;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow:
+    0 6px 14px rgba(37, 99, 235, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
 
-  color: #1e3a8a;
-  opacity: 0.75;
+.patient-banner-label {
+  font-size: 17px;
+  font-weight: 950;
+  letter-spacing: -0.03em;
+  color: #2563eb;
 }
 
 .patient-banner-badges {
   display: flex;
   align-items: center;
-  gap: 6px;
-
+  gap: 7px;
   flex-wrap: nowrap;
 }
 
 .patient-banner-badge {
-  padding: 5px 8px;
-
+  padding: 6px 10px;
   border-radius: 999px;
-
-  background: rgba(255, 255, 255, 0.82);
-
-  color: #1e40af;
-
+  background: rgba(255, 255, 255, 0.9);
+  color: #0f172a;
   font-size: 13px;
-  font-weight: 800;
-
+  font-weight: 900;
   white-space: nowrap;
-
   box-shadow:
-    inset 0 0 0 1px rgba(37, 99, 235, 0.08);
+    0 5px 12px rgba(15, 23, 42, 0.05),
+    inset 0 0 0 1px rgba(37, 99, 235, 0.06);
 }
 
-.patient-banner-button {
+.patient-banner-chevron {
+  position: relative;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex: 0 0 auto;
-
-  border: none;
-
-  border-radius: 13px;
-
-  padding: 8px 11px;
-
-  background: #2563eb;
-
-  color: white;
-
-  font-size: 14px;
-  font-weight: 800;
-
-  cursor: pointer;
-
+  color: #2563eb;
+  font-size: 26px;
+  font-weight: 950;
+  background: rgba(255, 255, 255, 0.88);
   box-shadow:
-    0 6px 14px rgba(37, 99, 235, 0.2);
-
-  transition:
-    transform 120ms ease,
-    box-shadow 160ms ease,
-    opacity 160ms ease;
-}
-
-.patient-banner-button:active {
-  transform: scale(0.96);
-}
-
-.patient-banner-button:hover {
-  opacity: 0.94;
+    0 6px 14px rgba(37, 99, 235, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
 .header-container.compact .patient-banner {
-  margin-top: 6px;
-  padding: 6px 9px;
-  border-radius: 15px;
+  padding: 8px 10px;
+  min-height: 48px;
+}
+
+.header-container.compact .patient-banner-avatar {
+  width: 33px;
+  height: 33px;
+  border-radius: 13px;
+  font-size: 22px;
 }
 
 .header-container.compact .patient-banner-label {
-  font-size: 11px;
+  font-size: 15px;
 }
 
 .header-container.compact .patient-banner-badge {
-  padding: 4px 7px;
+  padding: 5px 8px;
   font-size: 12px;
 }
 
-.header-container.compact .patient-banner-button {
-  padding: 7px 10px;
-  font-size: 13px;
+@media (max-width: 390px) {
+  .patient-banner-infos {
+    gap: 7px;
+  }
+
+  .patient-banner-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 13px;
+    font-size: 23px;
+  }
+
+  .patient-banner-label {
+    font-size: 15px;
+  }
+
+  .patient-banner-badge {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+
+  .patient-banner-chevron {
+    width: 32px;
+    height: 32px;
+  }
 }

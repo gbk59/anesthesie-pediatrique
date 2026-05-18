@@ -1,24 +1,36 @@
 .carte-lien {
+  position: relative;
+  overflow: hidden;
+
   padding: 18px;
   margin-bottom: 14px;
 
   border-radius: 24px;
-  border-top: 5px solid #adb5bd;
+  border-top: 0;
 
   background:
     linear-gradient(
       180deg,
-      #f8f9fa 0%,
-      #eef1f3 100%
+      rgba(255,255,255,0.34) 0%,
+      rgba(255,255,255,0.10) 42%,
+      rgba(255,255,255,0.02) 100%
+    ),
+    linear-gradient(
+      180deg,
+      #f9fafb 0%,
+      #eef2f5 100%
     );
 
-  text-align: center;
+  background-blend-mode: soft-light;
 
+  text-align: center;
   color: #111827;
 
   box-shadow:
-    0 10px 28px rgba(0,0,0,0.08),
-    inset 0 0 0 1px rgba(255,255,255,0.6);
+    0 14px 28px rgba(15, 23, 42, 0.10),
+    0 4px 10px rgba(15, 23, 42, 0.05),
+    inset 0 1px 0 rgba(255,255,255,0.62),
+    inset 0 0 0 1px rgba(226,232,240,0.70);
 
   animation:
     apparition-lien 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -26,6 +38,39 @@
   transition:
     transform 140ms ease,
     box-shadow 180ms ease;
+}
+
+.carte-lien::after {
+  content: "";
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -14%;
+  height: 54%;
+
+  background:
+    radial-gradient(
+      ellipse at 20% 100%,
+      rgba(255,255,255,0.44) 0%,
+      rgba(255,255,255,0.20) 42%,
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse at 82% 100%,
+      rgba(255,255,255,0.32) 0%,
+      rgba(255,255,255,0.16) 40%,
+      transparent 70%
+    );
+
+  filter: blur(4px);
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+.carte-lien > * {
+  position: relative;
+  z-index: 1;
 }
 
 .carte-lien:active {
@@ -40,7 +85,7 @@
 
   letter-spacing: -0.03em;
 
-  color: #111827;
+  color: rgba(17,24,39,0.92);
 }
 
 .carte-lien-description {
@@ -49,22 +94,27 @@
   font-size: 15px;
   line-height: 1.5;
 
-  color: #495057;
+  color: rgba(73,80,87,0.88);
 }
 
 .carte-lien-bouton {
   border: none;
 
-  border-radius: 14px;
+  border-radius: 15px;
 
   padding: 12px 18px;
 
-  background: #111827;
+  background:
+    linear-gradient(
+      180deg,
+      #1f2937 0%,
+      #111827 100%
+    );
 
   color: white;
 
   font-size: 15px;
-  font-weight: 750;
+  font-weight: 760;
 
   cursor: pointer;
 
@@ -75,7 +125,8 @@
     box-shadow 160ms ease;
 
   box-shadow:
-    0 8px 18px rgba(17,24,39,0.18);
+    0 10px 22px rgba(17,24,39,0.22),
+    inset 0 1px 0 rgba(255,255,255,0.14);
 }
 
 .carte-lien-bouton:active {
@@ -83,7 +134,7 @@
 }
 
 .carte-lien-bouton:hover {
-  opacity: 0.94;
+  opacity: 0.96;
 }
 
 @keyframes apparition-lien {
@@ -113,4 +164,21 @@
   .carte-lien-bouton {
     transition: none;
   }
+}
+
+.carte-lien.carte-has-action {
+  padding-right: 18px !important;
+}
+
+.carte-lien .carte-action-top-right {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
+}
+
+.carte-lien .favori-button {
+  width: 34px;
+  height: 34px;
+  font-size: 20px;
 }

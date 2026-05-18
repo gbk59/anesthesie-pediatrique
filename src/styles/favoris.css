@@ -234,3 +234,7 @@
 .favori-card-content a {
   user-select: auto;
 }
+
+.carte-resultat.carte-has-action {
+  padding-right: 16px !important;
+}

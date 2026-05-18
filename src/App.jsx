@@ -25,7 +25,6 @@ import AidesSection from "./components/AidesSection";
 import SourcesSection from "./components/SourcesSection";
 import FavorisSection from "./components/FavorisSection";
 import PatientSetup from "./components/PatientSetup";
-import PatientBanner from "./components/PatientBanner";
 import { valeurManquante, formatNombre } from "./utils/helpers";
 import "./styles/transitions.css";
 import { Analytics } from '@vercel/analytics/react'
@@ -37,6 +36,7 @@ import AuthGate from "./auth/AuthGate";
 import CGUModal from "./components/CGUModal";
 import AdminDashboard from './pages/AdminDashboard'
 import ResetPassword from './pages/ResetPassword'
+import BottomActionBar from "./components/BottomActionBar";
 
 function App() {
   const { user, signOut } = useAuth();
@@ -113,7 +113,7 @@ return (
       <div
         style={{
           padding: 12,
-          paddingBottom: 80,
+          paddingBottom: "calc(132px + env(safe-area-inset-bottom))",
           fontFamily: "Arial, sans-serif",
           maxWidth: 760,
           width: "100%",
@@ -134,7 +134,6 @@ return (
           changerOnglet={changerOnglet}
           age={age}
           poids={poids}
-          onModifierPatient={() => setPatientValide(false)}
           userEmail={user?.email}
           onSignOut={signOut}
         />
@@ -155,18 +154,18 @@ return (
             onClick={reinitialiserDonnees}
             style={{
               width: "100%",
-              padding: "12px",
-              borderRadius: 14,
-              border: "none",
-              background: "#dee2e6",
-              color: "#495057",
+              padding: "14px 12px",
+              borderRadius: 18,
+              border: "1px solid rgba(199, 210, 254, 0.74)",
+              background: "linear-gradient(180deg, rgba(238, 242, 255, 0.98), rgba(224, 231, 255, 0.88))",
+              color: "#2563eb",
               fontSize: 15,
-              fontWeight: "bold",
+              fontWeight: 900,
               cursor: "pointer",
-              boxShadow: "0 2px 6px rgba(0,0,0,0.06)",
+              boxShadow: "0 8px 22px rgba(37,99,235,0.08), inset 0 1px 0 rgba(255,255,255,0.85)",
             }}
           >
-            Réinitialiser les données
+            ↻ Réinitialiser les données
           </button>
         </div>
 
@@ -309,6 +308,16 @@ return (
           pdfOuvert={pdfOuvert}
           setPdfOuvert={setPdfOuvert}
         />
+
+        <BottomActionBar
+          age={age}
+          poids={poids}
+          favorisCount={favoris.length}
+          favorisActif={onglet === "favoris"}
+          onPatientClick={() => setPatientValide(false)}
+          onFavorisClick={() => changerOnglet("favoris")}
+        />
+
 
         <div
           style={{
