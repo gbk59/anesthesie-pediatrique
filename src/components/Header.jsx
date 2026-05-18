@@ -3,6 +3,7 @@ import PatientBanner from "./PatientBanner";
 import { useEffect, useRef, useState } from "react";
 import BoutonOnglet from "./BoutonOnglet";
 import { Link } from "react-router-dom";
+import { analyserCoherencePatient } from "../utils/coherencePatient";
 
 export default function Header({
   onglet,
@@ -74,6 +75,8 @@ export default function Header({
     onglet === "sources" ||
     (onglet === "sspi" && sousOngletSSPI === "douleur")
   );
+
+ const coherencePatient = analyserCoherencePatient({ age, poids }); 
 
   return (
     <div className={`header-container ${headerCompact ? "compact" : ""}`}>
@@ -154,7 +157,13 @@ export default function Header({
         </div>
       )}
 
-      {afficherPatient && <PatientBanner age={age} poids={poids} />}
+      {afficherPatient && (
+        <PatientBanner
+          age={age}
+          poids={poids}
+          coherencePatient={coherencePatient}
+        />
+      )}
     </div>
   );
 }
