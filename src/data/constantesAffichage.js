@@ -1,5 +1,6 @@
 const constantesAffichage = [
   { nom: "Poids théorique", cle: "poids" },
+  { nom: "Taille théorique", cle: "taille" },
   { nom: "Fréquence cardiaque", cle: "fc" },
   { nom: "Fréquence respiratoire", cle: "fr" },
   { nom: "PAS", cle: "pas" },

@@ -22,26 +22,44 @@ function AuthScreen() {
     !submitting &&
     (!isSignup || acceptCGU);
 
+  async function handleGoogleLogin() {
+    setMessage("");
+    setErrorMessage("");
+
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        queryParams: {
+          prompt: "select_account",
+        },
+      },
+    });
+
+    if (error) {
+      setErrorMessage(error.message);
+    }
+  }
+
   async function handleForgotPassword() {
     if (!email.trim()) {
-      setErrorMessage("Entre ton email d’abord.")
-      return
+      setErrorMessage("Entre ton email d’abord.");
+      return;
     }
 
-    setErrorMessage("")
-    setMessage("")
+    setErrorMessage("");
+    setMessage("");
 
     const { error } = await supabase.auth.resetPasswordForEmail(
       email.trim(),
       {
         redirectTo: `${window.location.origin}/reset-password`,
       }
-    )
+    );
 
     if (error) {
-      setErrorMessage(error.message)
+      setErrorMessage(error.message);
     } else {
-      setMessage("Email de récupération envoyé.")
+      setMessage("Email de récupération envoyé.");
     }
   }
 
@@ -122,6 +140,45 @@ function AuthScreen() {
           </button>
         </div>
 
+        <div className="auth-fast">
+          <p className="auth-fast-title">
+            {isSignup ? "Inscription rapide" : "Connexion rapide"}
+          </p>
+
+          <button
+            type="button"
+            onClick={handleGoogleLogin}
+            className="auth-google-button"
+          >
+            <img
+              src="https://www.google.com/favicon.ico"
+              alt=""
+              className="auth-google-icon"
+            />
+            Continuer avec Google
+          </button>
+
+          {isSignup && (
+            <p className="auth-oauth-legal">
+              En continuant avec Google, vous acceptez les{" "}
+              <button
+                type="button"
+                onClick={() => setShowCGU(true)}
+                className="auth-cgu-link"
+              >
+                conditions d’utilisation
+              </button>
+              .
+            </p>
+          )}
+        </div>
+
+        <div className="auth-separator">
+          <span></span>
+          <strong>OU</strong>
+          <span></span>
+        </div>
+
         <form onSubmit={handleSubmit} className="auth-form">
           <label>
             Email
@@ -160,7 +217,6 @@ function AuthScreen() {
 
               <span>
                 J’accepte les{" "}
-
                 <button
                   type="button"
                   onClick={(event) => {
@@ -172,7 +228,6 @@ function AuthScreen() {
                 >
                   conditions d’utilisation
                 </button>
-
                 {" "}et reconnais que cette application constitue une aide à la pratique
                 clinique destinée aux professionnels de santé.
               </span>
@@ -182,6 +237,7 @@ function AuthScreen() {
           {errorMessage && <p className="auth-error">{errorMessage}</p>}
 
           {message && <p className="auth-message">{message}</p>}
+
           {!isSignup && (
             <button
               type="button"
@@ -198,6 +254,7 @@ function AuthScreen() {
               Mot de passe oublié ?
             </button>
           )}
+
           <button
             type="submit"
             disabled={!canSubmit}
@@ -211,10 +268,11 @@ function AuthScreen() {
           </button>
         </form>
       </section>
+
       <CGUModal
         open={showCGU}
         onClose={() => setShowCGU(false)}
-      />      
+      />
     </main>
   );
 }

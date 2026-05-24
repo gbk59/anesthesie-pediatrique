@@ -340,6 +340,9 @@ export default function FavorisSection({
       return (
         <CarteResultat
           titre={medicament.nom}
+          preparation={medicament.preparation}
+          doseMaxCalculee={doseMax}
+          retournable={true}
           description={
             medicament.doseMin === medicament.doseMax
               ? `${medicament.doseMin} ${medicament.unite}`

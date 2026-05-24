@@ -148,3 +148,108 @@
   pointer-events: none;
   z-index: 0;
 }
+
+.carte-retournable {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.carte-retournee {
+  animation: carteFlipDouce 180ms ease-out;
+}
+
+@keyframes carteFlipDouce {
+  from {
+    transform: scale(0.98);
+    opacity: 0.75;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.carte-resultat {
+  position: relative;
+}
+
+.carte-resultat .carte-resultat-indice {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.28);
+
+  font-size: 0.78rem;
+  font-weight: 900;
+  line-height: 1;
+
+  opacity: 0.72;
+
+  pointer-events: none;
+  margin: 0;
+}
+
+.carte-resultat-dilution {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 10px;
+  margin-bottom: 18px;
+
+  padding: 8px 12px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.28);
+
+  border: 1px solid rgba(0, 0, 0, 0.08);
+
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.05);
+
+  backdrop-filter: blur(6px);
+}
+
+.carte-resultat-dilution-label {
+  font-weight: 800;
+  opacity: 0.92;
+}
+
+.carte-resultat-dilution-valeur {
+  font-weight: 600;
+  opacity: 0.88;
+}
+
+.carte-resultat-administration {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: -6px;
+  margin-bottom: 10px;
+
+  padding: 2px 7px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.22);
+
+  border: 1px solid rgba(0, 0, 0, 0.06);
+
+  font-size: 0.62rem;
+  font-weight: 800;
+  line-height: 1;
+
+  opacity: 0.82;
+}

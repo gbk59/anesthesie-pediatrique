@@ -45,6 +45,9 @@ export default function DroguesSection({
             <CarteResultat
               key={medicament.nom}
               titre={medicament.nom}
+              preparation={medicament.preparation}
+              doseMaxCalculee={doseMax}
+              poids={poids}
               description={
                 medicament.doseMin ===
                 medicament.doseMax
@@ -55,6 +58,7 @@ export default function DroguesSection({
               fond={styleCategorie.couleur}
               texte={styleCategorie.texte}
               bordure="#212529"
+              retournable={true}
               action={
                 <FavoriButton
                   actif={estFavori?.("drug", medicament.nom)}

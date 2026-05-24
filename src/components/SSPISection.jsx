@@ -31,6 +31,7 @@ export default function SSPISection({
   formatNombre,
   estFavori,
   basculerFavori,
+  onResetFlacc,
 }) {
   return (
     <>
@@ -113,9 +114,17 @@ export default function SSPISection({
             ]}
           />
 
+          <button
+            type="button"
+            onClick={onResetFlacc}
+            className="flacc-reset-button"
+          >
+            ↻ Réinitialiser le score FLACC
+          </button>
+
           <div
             style={{
-              marginTop: 18,
+              marginTop: 12,
               padding: 18,
               borderRadius: 16,
               textAlign: "center",

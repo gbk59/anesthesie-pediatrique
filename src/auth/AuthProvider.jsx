@@ -6,6 +6,28 @@ const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+async function verifierAdmin(userId) {
+  if (!userId) {
+    setIsAdmin(false);
+    return;
+  }
+
+  const { data, error } = await supabase
+    .from("admin_users")
+    .select("user_id")
+    .eq("user_id", userId)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Erreur vérification admin", error);
+    setIsAdmin(false);
+    return;
+  }
+
+  setIsAdmin(Boolean(data));
+}
 
   useEffect(() => {
     let mounted = true;
@@ -18,12 +40,14 @@ export function AuthProvider({ children }) {
       }
 
       setSession(data?.session ?? null);
+      verifierAdmin(data?.session?.user?.id);
       setLoading(false);
     });
 
     const { data: listener } = supabase.auth.onAuthStateChange(
       (_event, newSession) => {
         setSession(newSession);
+        verifierAdmin(newSession?.user?.id);
         setLoading(false);
       }
     );
@@ -42,11 +66,12 @@ export function AuthProvider({ children }) {
   const value = useMemo(
     () => ({
       session,
+      isAdmin,
       user: session?.user ?? null,
       loading,
       signOut,
     }),
-    [session, loading]
+    [session, loading,isAdmin]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
