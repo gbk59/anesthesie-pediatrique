@@ -127,7 +127,7 @@ export default function Header({
               onClick={() => setMenuSectionsOuvert(true)}
             >
               <span aria-hidden="true">☰</span>
-              Sections
+              Menu
             </button>
 
             <div className="section-title" aria-label={`Section ${section.label}`}>
@@ -145,17 +145,21 @@ export default function Header({
                 {rechercheOuverte ? "×" : "🔍"}
               </button>
 
+
+            </div>
+
+            <div className="section-subheader">
               <button
                 type="button"
                 onClick={onSignOut}
-                className="section-icon-button section-signout-button"
-                aria-label="Déconnexion"
-                title="Déconnexion"
+                className="section-logout-pill"
               >
-                ↪
+                ↩ Déconnexion
               </button>
-            </div>
+            </div>            
           </div>
+
+
         )}
 
         {!estAccueil && rechercheOuverte && (
