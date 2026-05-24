@@ -154,7 +154,7 @@ export default function Header({
                 onClick={onSignOut}
                 className="section-logout-pill"
               >
-                ↩ Déconnexion
+                ↪ Déconnexion
               </button>
             </div>            
           </div>
